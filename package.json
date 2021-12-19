@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/ametis70/meli-challenge/issues"
   },
-  "homepage": "https://github.com/ametis70/meli-challenge#readme"
+  "homepage": "https://github.com/ametis70/meli-challenge#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.1",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "typescript": "^4.5.4"
+  }
 }
