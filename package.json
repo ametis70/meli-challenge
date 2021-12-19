@@ -1,0 +1,19 @@
+{
+  "name": "meli-challenge",
+  "version": "0.0.1",
+  "description": "Challenge para MELI",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ian Mancini <contacto@ianmancini.com.ar>",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ametis70/meli-challenge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ametis70/meli-challenge/issues"
+  },
+  "homepage": "https://github.com/ametis70/meli-challenge#readme"
+}
