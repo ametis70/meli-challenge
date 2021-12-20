@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Request, Response, Router } from 'express'
+import { getDecimals } from '../util/currency'
 
 const apiRouter = Router()
 
@@ -26,7 +27,7 @@ apiRouter.get('/items', async (req: Request, res: Response) => {
       price: {
         currency: item.currency_id,
         amount: Math.floor(item.price),
-        decimals: parseInt((item.price % 1).toFixed(2).substring(2)),
+        decimals: getDecimals(item.price),
       },
       picture: item.thumbnail,
       condition: item.condition,
@@ -88,7 +89,7 @@ apiRouter.get('/items/:id', async (req: Request, res: Response) => {
         price: {
           currency: itemData.currency_id,
           amount: Math.floor(itemData.price),
-          decimals: parseInt((itemData.price % 1).toFixed(2).substring(2)),
+          decimals: getDecimals(itemData.price),
         },
         picture: itemData.thumbnail,
         condition: itemData.condition,
