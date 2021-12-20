@@ -10,9 +10,18 @@ app.get('*', (_, res) => {
   res.send('Server running')
 })
 
-const port = process.env.PORT
-if (port && typeof port !== 'number') {
-  console.warn(`PORT env var (${port}) is not a number, falling back to port 3000`)
+let port = 3000
+if (process.env.PORT !== undefined) {
+  const _port = parseInt(process.env.PORT)
+  if (isNaN(_port)) {
+    console.warn(
+      `PORT env var (${process.env.PORT}) is not a number, falling back to port 3000`,
+    )
+  } else {
+    port = _port
+  }
 }
 
-app.listen(port && typeof port === 'number' ? port : 3000)
+app.listen(port, () => {
+  console.info(`Server is running on port ${port}`)
+})
