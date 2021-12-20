@@ -1,6 +1,10 @@
 import express from 'express'
 
+import apiRouter from './server/api'
+
 const app = express()
+
+app.use('/api', apiRouter)
 
 app.get('*', (_, res) => {
   res.send('Server running')
