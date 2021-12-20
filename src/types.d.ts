@@ -1,4 +1,8 @@
-// ML api types
+// ML API types
+
+// NOTE: These types are probably wrong (no union types, optional
+// properties, etc.) as they were generated using cURL and jq, but
+// for the purposes of the challenge they should be good enough
 
 declare type MLItemsQueryResponse = {
   site_id: string
@@ -207,13 +211,177 @@ declare type MLItemsQueryResponse = {
   }>
 }
 
+declare type MLItem = {
+  id: string
+  site_id: string
+  title: string
+  subtitle: null
+  seller_id: number
+  category_id: string
+  official_store_id: null
+  price: number
+  base_price: number
+  original_price: number
+  currency_id: string
+  initial_quantity: number
+  available_quantity: number
+  sold_quantity: number
+  sale_terms: Array<{
+    id: string
+    name: string
+    value_id: string
+    value_name: string
+    value_struct: {
+      number: number
+      unit: string
+    }
+    values: Array<{
+      id: string
+      name: string
+      struct: {
+        number: number
+        unit: string
+      }
+    }>
+  }>
+  buying_mode: string
+  listing_type_id: string
+  start_time: string
+  stop_time: string
+  condition: string
+  permalink: string
+  thumbnail_id: string
+  thumbnail: string
+  secure_thumbnail: string
+  pictures: Array<{
+    id: string
+    url: string
+    secure_url: string
+    size: string
+    max_size: string
+    quality: string
+  }>
+  video_id: null
+  descriptions: Array
+  accepts_mercadopago: boolean
+  non_mercado_pago_payment_methods: Array
+  shipping: {
+    mode: string
+    free_methods: Array<{
+      id: number
+      rule: {
+        default: boolean
+        free_mode: string
+        free_shipping_flag: boolean
+        value: null
+      }
+    }>
+    tags: [string]
+    dimensions: null
+    local_pick_up: boolean
+    free_shipping: boolean
+    logistic_type: string
+    store_pick_up: boolean
+  }
+  international_delivery_mode: string
+  seller_address: {
+    city: {
+      name: string
+    }
+    state: {
+      id: string
+      name: string
+    }
+    country: {
+      id: string
+      name: string
+    }
+    search_location: {
+      neighborhood: {
+        id: string
+        name: string
+      }
+      city: {
+        id: string
+        name: string
+      }
+      state: {
+        id: string
+        name: string
+      }
+    }
+    id: number
+  }
+  seller_contact: null
+  location: {}
+  coverage_areas: Array
+  attributes: Array<{
+    attribute_group_id: string
+    attribute_group_name: string
+    id: string
+    name: string
+    value_id: string
+    value_name: string
+    value_struct: {
+      number: number
+      unit: string
+    }
+    values: Array<{
+      id: string
+      name: string
+      struct: {
+        number: number
+        unit: string
+      }
+    }>
+  }>
+  warnings: Array
+  listing_source: string
+  variations: Array
+  status: string
+  sub_status: Array
+  tags: string[]
+  warranty: string
+  catalog_product_id: string
+  domain_id: string
+  parent_item_id: null
+  differential_pricing: null
+  deal_ids: Array
+  automatic_relist: boolean
+  date_created: string
+  last_updated: string
+  health: null
+  catalog_listing: boolean
+  channels: string[]
+}
+
+declare type MLDescription = {
+  text: string
+  plain_text: string
+  last_updated: string
+  date_created: string
+  snapshot: {
+    url: string
+    width: number
+    height: number
+    status: string
+  }
+}
+
+declare type MLError = {
+  error: string
+  message: string
+}
+
 // App API types
 
+declare type Author = {
+  name: string
+  lastname: string
+}
+
 declare type ItemsQueryResponse = {
-  author: {
-    name: string
-    lastname: string
-  }
+  author: Author
   categories: string[]
   items: Array<{
     id: string
@@ -227,4 +395,22 @@ declare type ItemsQueryResponse = {
     condition: string
     free_shipping: boolean
   }>
+}
+
+declare type ItemResponse = {
+  author: Author
+  item: {
+    id: string
+    title: string
+    price: {
+      currency: string
+      amount: number
+      decimals: number
+    }
+    picture: string
+    condition: string
+    free_shipping: boolean
+    sold_quantity: number
+    description: string
+  }
 }
