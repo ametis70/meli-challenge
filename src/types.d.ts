@@ -4,7 +4,7 @@
 // properties, etc.) as they were generated using cURL and jq, but
 // for the purposes of the challenge they should be good enough
 
-declare type MLItemsQueryResponse = {
+declare type MLItemsQuery = {
   site_id: string
   country_default_time_zone: string
   query: string
@@ -380,7 +380,7 @@ declare type Author = {
   lastname: string
 }
 
-declare type ItemsQueryResponse = {
+declare type ItemsQuery = {
   author: Author
   categories: string[]
   items: Array<{

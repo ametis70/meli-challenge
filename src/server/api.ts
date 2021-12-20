@@ -16,7 +16,7 @@ apiRouter.get('/items', async (req: Request, res: Response) => {
   }
 
   try {
-    const { data } = await axios.get<MLItemsQueryResponse>(
+    const { data } = await axios.get<MLItemsQuery>(
       `https://api.mercadolibre.com/sites/MLA/search?q=${q}`,
     )
 
@@ -39,7 +39,7 @@ apiRouter.get('/items', async (req: Request, res: Response) => {
         (breadcrumb: { id: string; name: string }) => breadcrumb.name,
       )
 
-    const resJson: ItemsQueryResponse = {
+    const resJson: ItemsQuery = {
       author,
       categories,
       items,
