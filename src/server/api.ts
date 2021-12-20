@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Request, Response, Router } from 'express'
+
 import { getDecimals } from '../util/currency'
 
 const apiRouter = Router()
@@ -17,9 +18,17 @@ apiRouter.get('/items', async (req: Request, res: Response) => {
   }
 
   try {
-    const { data } = await axios.get<MLItemsQuery>(
+    const { data } = await axios.get<MLItemsQuery | MLError>(
       `https://api.mercadolibre.com/sites/MLA/search?q=${q}`,
     )
+
+    if ('error' in data) {
+      throw new Error(data.message)
+    }
+
+    if (data.results.length === 0) {
+      return res.send(404).send('Not items found')
+    }
 
     const items = data.results.slice(0, 4).map((item) => ({
       id: item.id,
