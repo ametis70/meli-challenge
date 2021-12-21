@@ -19,7 +19,7 @@ apiRouter.get('/items', async (req: Request, res: Response) => {
 
   try {
     const { data } = await axios.get<MLItemsQuery | MLError>(
-      `https://api.mercadolibre.com/sites/MLA/search?q=${q}`,
+      encodeURI(`https://api.mercadolibre.com/sites/MLA/search?q=${q}`),
     )
 
     if ('error' in data) {

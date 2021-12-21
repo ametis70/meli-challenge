@@ -8,9 +8,7 @@ const Breadcrumbs: React.VFC<{ segments: string[] }> = ({ segments }) => {
       <ol>
         {segments.map((segment) => (
           <li key={segment}>
-            <a href={'/items?' + new URLSearchParams(`q=${segment}`).toString()}>
-              {segment}
-            </a>
+            <a href={encodeURI(`/items?q=${segment}`)}>{segment}</a>
           </li>
         ))}
       </ol>
