@@ -6,7 +6,7 @@ import Breadcrumbs from './Breadcrumbs'
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams()
-  const query = searchParams.get('q')
+  const query = searchParams.get('search')
 
   const [data] = useSSE<ItemsQuery>(async () => {
     try {
