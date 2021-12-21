@@ -1,14 +1,14 @@
 import express from 'express'
 
-import renderRouter from './server.entry'
 import apiRouter from './server/api'
+import preRender from './server/renderer'
 
 const app = express()
 
 app.use('/api', apiRouter)
 
 app.get('*', async (req, res) => {
-  const html = await renderRouter(req.url)
+  const html = await preRender(req.url)
   res.send('<!DOCTYPE html>' + html)
 })
 

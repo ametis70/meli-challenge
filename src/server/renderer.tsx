@@ -2,9 +2,9 @@ import ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom/server'
 import { createServerContext } from 'use-sse'
 
-import App from './components/App'
+import App from '../components/App'
 
-const renderRouter = async (url: string): Promise<string> => {
+const preRender = async (url: string): Promise<string> => {
   const { ServerDataContext, resolveData } = createServerContext()
 
   const renderToString = () =>
@@ -23,4 +23,4 @@ const renderRouter = async (url: string): Promise<string> => {
   return renderToString()
 }
 
-export default renderRouter
+export default preRender
