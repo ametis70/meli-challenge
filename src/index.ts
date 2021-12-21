@@ -1,13 +1,15 @@
 import express from 'express'
 
+import renderRouter from './server.entry'
 import apiRouter from './server/api'
 
 const app = express()
 
 app.use('/api', apiRouter)
 
-app.get('*', (_, res) => {
-  res.send('Server running')
+app.get('*', (req, res) => {
+  const html = renderRouter(req.url)
+  res.send('<!DOCTYPE html>' + html)
 })
 
 let port = 3000
