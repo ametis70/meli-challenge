@@ -2,6 +2,8 @@ import axios from 'axios'
 import { useSearchParams } from 'react-router-dom'
 import { useSSE } from 'use-sse'
 
+import Breadcrumbs from './Breadcrumbs'
+
 const SearchResults = () => {
   const [searchParams] = useSearchParams()
   const query = searchParams.get('q')
@@ -21,17 +23,7 @@ const SearchResults = () => {
 
   return (
     <>
-      {data.categories ? (
-        <nav>
-          <ol>
-            {data.categories.map((cat) => (
-              <li key={cat}>
-                <a href={'/items?' + new URLSearchParams(`q=${cat}`).toString()}>{cat}</a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-      ) : null}
+      <Breadcrumbs segments={data.categories} />
       <section>
         <ol>
           {data.items.map((item) => {
