@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 
+import Header from './Header'
+
 const App: React.VFC = () => {
   return (
     <html>
@@ -7,6 +9,7 @@ const App: React.VFC = () => {
         <title>Challenge MELI</title>
       </head>
       <body>
+        <Header />
         <Routes>
           <Route path="/" element={<div>Home</div>} />
           <Route path="/items" element={<div>Items</div>} />
