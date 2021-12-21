@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 
 import Header from './Header'
+import SearchResults from './SearchResults'
 
 const App: React.VFC = () => {
   return (
@@ -12,7 +13,7 @@ const App: React.VFC = () => {
         <Header />
         <Routes>
           <Route path="/" element={<div>Home</div>} />
-          <Route path="/items" element={<div>Items</div>} />
+          <Route path="/items" element={<SearchResults />} />
           <Route path="/items/:id" element={<div>Details</div>} />
         </Routes>
       </body>

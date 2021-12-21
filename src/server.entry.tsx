@@ -19,7 +19,7 @@ const renderRouter = async (url: string): Promise<string> => {
   // First render
   renderToString()
 
-  const data = await resolveData()
+  await resolveData()
   return renderToString()
 }
 
