@@ -27,7 +27,7 @@ apiRouter.get('/items', async (req: Request, res: Response) => {
     }
 
     if (data.results.length === 0) {
-      return res.send(404).send('Not items found')
+      return res.status(404).send('Not items found')
     }
 
     const items = data.results.slice(0, 4).map((item) => ({
