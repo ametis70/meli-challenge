@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 
 import Header from './Header'
+import Item from './Item'
 import SearchResults from './SearchResults'
 
 const App: React.VFC = () => {
@@ -14,7 +15,7 @@ const App: React.VFC = () => {
         <Routes>
           <Route path="/" element={<div>Home</div>} />
           <Route path="/items" element={<SearchResults />} />
-          <Route path="/items/:id" element={<div>Details</div>} />
+          <Route path="/items/:id" element={<Item />} />
         </Routes>
       </body>
     </html>
