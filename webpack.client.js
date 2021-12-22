@@ -22,6 +22,7 @@ module.exports = merge(common, {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'client', 'index.html'),
+      publicPath: '/',
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['*.js'],
