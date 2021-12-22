@@ -80,3 +80,32 @@ h6 {
     background-color: lighten($color-text-alt, 35%);
   }
 }
+
+.breadcrumbs-list {
+  display: flex;
+  color: $color-text-alt;
+  padding: $size-4 0;
+  font-size: $text-sm;
+
+  & li {
+    &::before {
+      content: '>';
+      padding: 0 $size-2;
+      font-weight: initial;
+      color: $color-text-alt;
+    }
+
+    &:first-child::before {
+      content: '';
+      padding: 0;
+    }
+
+    &:last-child {
+      font-weight: bold;
+    }
+
+    & a:hover {
+      color: darken($color-text-alt, 20%);
+    }
+  }
+}

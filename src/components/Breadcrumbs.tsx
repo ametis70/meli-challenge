@@ -5,7 +5,7 @@ const Breadcrumbs: React.VFC<{ segments: string[] }> = ({ segments }) => {
 
   return (
     <nav>
-      <ol>
+      <ol className="breadcrumbs-list">
         {segments.map((segment) => (
           <li key={segment}>
             <a href={encodeURI(`/items?q=${segment}`)}>{segment}</a>
