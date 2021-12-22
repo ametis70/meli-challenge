@@ -6,9 +6,9 @@ module.exports = {
   entry: path.resolve(__dirname, 'src', 'client.tsx'),
   devServer: {
     historyApiFallback: true,
-    port: 3001,
+    port: 8000,
     proxy: {
-      '/api': 3000,
+      '/api': `http://localhost:${process.env.PORT ?? '3000'}`,
     },
   },
   module: {

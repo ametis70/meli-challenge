@@ -1,3 +1,4 @@
+import axios from 'axios'
 import express from 'express'
 
 import apiRouter from './server/api'
@@ -5,6 +6,8 @@ import preRender from './server/renderer'
 import { getPort } from './util/port'
 
 const port = getPort()
+axios.defaults.baseURL = `http://localhost:${port}`
+
 const app = express()
 
 const start = async () => {

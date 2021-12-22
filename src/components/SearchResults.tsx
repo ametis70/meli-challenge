@@ -10,7 +10,7 @@ const SearchResults = () => {
 
   const [data] = useSSE<ItemsQuery>(async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3000/api/items?q=${query}`)
+      const { data } = await axios.get(`/api/items?q=${query}`)
       return data
     } catch (e) {
       return null

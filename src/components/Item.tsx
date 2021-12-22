@@ -14,7 +14,7 @@ const Item: React.VFC = () => {
 
   const [data] = useSSE<ItemResponse>(async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3000/api/items/${id}`)
+      const { data } = await axios.get(`/api/items/${id}`)
       return data
     } catch (e) {
       return null
