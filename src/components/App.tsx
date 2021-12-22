@@ -6,19 +6,14 @@ import SearchResults from './SearchResults'
 
 const App: React.VFC = () => {
   return (
-    <html>
-      <head>
-        <title>Challenge MELI</title>
-      </head>
-      <body>
-        <Header />
-        <Routes>
-          <Route path="/" element={<div>Home</div>} />
-          <Route path="/items" element={<SearchResults />} />
-          <Route path="/items/:id" element={<Item />} />
-        </Routes>
-      </body>
-    </html>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<div>Home</div>} />
+        <Route path="/items" element={<SearchResults />} />
+        <Route path="/items/:id" element={<Item />} />
+      </Routes>
+    </>
   )
 }
 

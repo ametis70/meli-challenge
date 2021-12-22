@@ -6,11 +6,7 @@ import preRender from './server/renderer'
 const app = express()
 
 app.use('/api', apiRouter)
-
-app.get('*', async (req, res) => {
-  const html = await preRender(req.url)
-  res.send('<!DOCTYPE html>' + html)
-})
+app.get('*', preRender)
 
 let port = 3000
 if (process.env.PORT !== undefined) {
