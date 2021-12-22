@@ -1,5 +1,16 @@
 @use 'theme' as *;
 
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 body,
 html {
   font-size: 16px;
@@ -84,7 +95,7 @@ h6 {
 .breadcrumbs-list {
   display: flex;
   color: $color-text-alt;
-  padding: $size-4 0;
+  margin: $size-4 0;
   font-size: $text-sm;
 
   & li {
@@ -108,4 +119,63 @@ h6 {
       color: darken($color-text-alt, 20%);
     }
   }
+}
+
+.content-box {
+  margin: $size-4 0;
+  background-color: #ffffff;
+  border-radius: $rounded;
+  overflow: hidden;
+}
+
+.search-item {
+  padding: $size-4;
+
+  div &-flex {
+    display: flex;
+  }
+
+  img {
+    width: 180px;
+    height: 180px;
+    border-radius: $rounded;
+    object-fit: contain;
+  }
+
+  dl {
+    padding: $size-4;
+    max-width: 360px;
+  }
+
+  dt {
+    @extend .visually-hidden;
+    line-height: 1;
+  }
+
+  dd {
+    font-size: $text-lg;
+    line-height: 1.125;
+
+    &.search-price {
+      font-size: $text-xl;
+      padding-bottom: $size-8;
+    }
+  }
+
+  hr {
+    border-color: $color-divider;
+    border-width: 0.5px;
+  }
+}
+
+.shipping-badge {
+  display: inline-block;
+  background-image: url('/img/shipping.png');
+  background-size: 75%;
+  background-position: center 100%;
+  background-repeat: no-repeat no-repeat;
+  vertical-align: baseline;
+  width: 1em;
+  height: 1em;
+  margin-left: $size-2;
 }

@@ -22,43 +22,53 @@ const SearchResults = () => {
   }
 
   return (
-    <>
+    <main className="container">
       <Breadcrumbs segments={data.categories} />
-      <section>
+      <section className="content-box">
         <ol>
-          {data.items.map((item) => {
+          {data.items.map((item, i) => {
             // Link wrapper for inner elements
             const L: React.FC = ({ children }) => (
               <a href={`/items/${item.id}`}>{children}</a>
             )
 
             return (
-              <li key={item.id}>
-                <L>
-                  <img src={item.picture} alt={`Imagen de ${item.title}`} />
-                </L>
+              <li key={item.id} className="search-item">
+                <div className="search-item-flex">
+                  <L>
+                    <img src={item.picture} alt={`Imagen de ${item.title}`} />
+                  </L>
 
-                <dl>
-                  <dt>Articulo</dt>
-                  <dd>
-                    <L>{item.title}</L>
-                  </dd>
-                  <dt>Precio (${item.price.currency})</dt>
-                  <dd>
-                    <L>
-                      {`$ ${item.price.amount}`}
-                      {item.price.decimals ? `.${item.price.decimals}` : null}
-                    </L>
-                  </dd>
-                  <dt>Envio</dt>
-                  <dd>{item.free_shipping ? 'Envío gratis' : 'Consultar precio'}</dd>
-                </dl>
+                  <dl>
+                    <dt>Precio (${item.price.currency})</dt>
+                    <dd className="search-price">
+                      <L>
+                        {`$ ${item.price.amount}`}
+                        {item.price.decimals ? `.${item.price.decimals}` : null}
+                        {item.free_shipping ? (
+                          <span className="shipping-badge" aria-hidden="true" />
+                        ) : null}
+                      </L>
+                    </dd>
+
+                    <dt>Envio</dt>
+                    <dd className="visually-hidden">
+                      {item.free_shipping ? 'Envío gratis' : 'Consultar precio'}
+                    </dd>
+
+                    <dt>Articulo</dt>
+                    <dd>
+                      <L>{item.title}</L>
+                    </dd>
+                  </dl>
+                </div>
+                {i < data.items.length - 1 ? <hr /> : null}
               </li>
             )
           })}
         </ol>
       </section>
-    </>
+    </main>
   )
 }
 
