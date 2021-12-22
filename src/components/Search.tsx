@@ -21,7 +21,7 @@ const Search: React.VFC = () => {
         name="search"
         aria-label="Campo de búsqueda"
         placeholder="Nunca dejes de buscar"
-        value={searchValue ? decodeURI(searchValue) : undefined}
+        defaultValue={searchValue ? decodeURI(searchValue) : undefined}
       />
       <label htmlFor="search-button" aria-hidden="true" className="search-button" />
       <input id="search-button" hidden type="submit" value="Buscar" />
