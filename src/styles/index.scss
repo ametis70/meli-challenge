@@ -1,0 +1,82 @@
+@use 'theme' as *;
+
+body,
+html {
+  font-size: 16px;
+  background-color: $color-bg;
+  color: $color-text;
+  min-height: 100vh;
+}
+
+p {
+  color: $color-text-alt;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $color-text;
+}
+
+.container {
+  width: 100%;
+  height: fit-content;
+  margin: 0 auto;
+
+  @media (min-width: 640px) {
+    width: 100%;
+    padding: $size-0 $size-4;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 860px;
+    padding: 0;
+  }
+}
+
+.header-flex {
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  background-color: $color-primary;
+  height: $size-12;
+}
+
+.logo {
+  max-height: $size-12;
+  padding: $size-2;
+  margin-right: $size-4;
+}
+
+.search-container {
+  display: flex;
+  width: 100%;
+
+  & input[type='text'] {
+    width: 100%;
+    height: $size-8;
+    padding: 0 $size-2;
+    font-size: $text-lg;
+  }
+}
+
+.search-button {
+  background-color: $color-bg;
+  background-image: url('/img/search.png');
+  background-size: $size-4;
+  background-position: center center;
+  background-repeat: no-repeat no-repeat;
+  height: $size-8;
+  aspect-ratio: 1.25/1;
+  cursor: pointer;
+  opacity: 1;
+
+  &:hover {
+    background-color: lighten($color-text-alt, 35%);
+  }
+}
