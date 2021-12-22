@@ -6,6 +6,7 @@
   "scripts": {
     "start:server": "node-dev src/index.ts",
     "start:client": "webpack serve --config webpack.client.js",
+    "start": "concurrently npm:start:*",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json}'",
@@ -32,6 +33,7 @@
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "babel-loader": "^8.2.3",
+    "concurrently": "^6.5.1",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-app": "^7.0.0",
