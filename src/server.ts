@@ -17,6 +17,7 @@ const start = async () => {
   }
 
   app.use('/api', apiRouter)
+  app.use(express.static('public'))
   app.get('*', preRender)
 
   app.listen(port, () => {
