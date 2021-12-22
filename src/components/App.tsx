@@ -9,7 +9,6 @@ const App: React.VFC = () => {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<div>Home</div>} />
         <Route path="/items" element={<SearchResults />} />
         <Route path="/items/:id" element={<Item />} />
       </Routes>
