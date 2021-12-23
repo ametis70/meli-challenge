@@ -387,6 +387,7 @@ declare type Price = {
 }
 
 declare type ItemsQuery = {
+  error?: number
   author: Author
   categories: string[]
   items: Array<{
@@ -400,6 +401,7 @@ declare type ItemsQuery = {
 }
 
 declare type ItemResponse = {
+  error?: number
   author: Author
   item: {
     id: string

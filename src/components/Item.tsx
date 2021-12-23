@@ -20,7 +20,7 @@ const Item: React.VFC = () => {
   }
 
   if (!data.item) {
-    return <p> Producto no encontrado </p>
+    return <p className="message"> Producto no encontrado </p>
   }
 
   const { item } = data

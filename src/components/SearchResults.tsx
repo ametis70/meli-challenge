@@ -16,11 +16,11 @@ const SearchResults = () => {
   }
 
   if (data.error || !data.items || data.items.length === 0) {
-    if (data.error === 404) {
-      return <p> No hay resultados </p>
-    } else {
-      return <p> Ocurrió un error inesperado </p>
-    }
+    return (
+      <p className="message">
+        {data.error === 404 ? 'No hay resultados' : 'Ocurrió un error inesperado'}
+      </p>
+    )
   }
 
   return (
