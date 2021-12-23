@@ -65,7 +65,7 @@ const preRender = async (req: Request, res: Response) => {
             template.end(
               process.env.NODE_ENV !== 'production'
                 ? 'http://localhost:8000/bundle.js'
-                : `/public/${bundleFile}`,
+                : `/${bundleFile}`,
             ),
           )
           this.queue(null)
