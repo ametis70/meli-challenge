@@ -38,7 +38,7 @@ apiRouter.get('/items', async (req: Request, res: Response) => {
         amount: Math.floor(item.price),
         decimals: getDecimals(item.price),
       },
-      picture: item.thumbnail,
+      picture: item.thumbnail.replace('http://', 'https://'),
       condition: item.condition,
       free_shipping: item.shipping.free_shipping,
     }))
@@ -100,7 +100,7 @@ apiRouter.get('/items/:id', async (req: Request, res: Response) => {
           amount: Math.floor(itemData.price),
           decimals: getDecimals(itemData.price),
         },
-        picture: itemData.thumbnail,
+        picture: itemData.thumbnail.replace('http://', 'https://'),
         condition: itemData.condition,
         free_shipping: itemData.shipping.free_shipping,
         sold_quantity: itemData.sold_quantity,
