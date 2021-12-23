@@ -19,6 +19,7 @@ module.exports = {
             options: {
               importLoaders: 1,
               url: false,
+              esModule: false,
             },
           },
           'sass-loader',
