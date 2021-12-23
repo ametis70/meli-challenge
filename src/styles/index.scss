@@ -246,3 +246,13 @@ h6 {
     font-size: $text-sm;
   }
 }
+
+.price {
+  color: $color-text;
+
+  .price-decimals {
+    vertical-align: super;
+    padding-left: $size-1;
+    font-size: 0.5em;
+  }
+}

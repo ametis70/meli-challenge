@@ -380,17 +380,19 @@ declare type Author = {
   lastname: string
 }
 
+declare type Price = {
+  currency: string
+  amount: number
+  decimals: number
+}
+
 declare type ItemsQuery = {
   author: Author
   categories: string[]
   items: Array<{
     id: string
     title: string
-    price: {
-      currency: string
-      amount: number
-      decimals: number
-    }
+    price: Price
     picture: string
     condition: string
     free_shipping: boolean
@@ -402,11 +404,7 @@ declare type ItemResponse = {
   item: {
     id: string
     title: string
-    price: {
-      currency: string
-      amount: number
-      decimals: number
-    }
+    price: Price
     picture: string
     condition: string
     free_shipping: boolean

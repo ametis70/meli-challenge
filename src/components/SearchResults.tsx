@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useSSE } from 'use-sse'
 
 import Breadcrumbs from './Breadcrumbs'
+import Price from './Price'
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams()
@@ -43,11 +44,9 @@ const SearchResults = () => {
                     <dt>Precio (${item.price.currency})</dt>
                     <dd className="search-price">
                       <L>
-                        {`$ ${item.price.amount}`}
-                        {item.price.decimals ? `.${item.price.decimals}` : null}
-                        {item.free_shipping ? (
+                        <Price price={item.price}>
                           <span className="shipping-badge" aria-hidden="true" />
-                        ) : null}
+                        </Price>
                       </L>
                     </dd>
 

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useSSE } from 'use-sse'
 
 import Breadcrumbs from './Breadcrumbs'
+import Price from './Price'
 
 const translations: Record<string, string> = {
   used: 'Usado',
@@ -41,10 +42,9 @@ const Item: React.VFC = () => {
             <h1 className="title" aria-hidden="true">
               {item.title}
             </h1>
-            <p className="price" aria-label="Precio">
-              {`$ ${item.price.amount}`}
-              {item.price.decimals ? `.${item.price.decimals}` : null}
-            </p>
+            <div className="price" aria-label="Precio">
+              <Price price={item.price} />
+            </div>
             <a
               className="cta"
               rel="noreferrer"
