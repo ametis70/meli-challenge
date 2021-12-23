@@ -39,10 +39,10 @@ h6 {
   width: 100%;
   height: fit-content;
   margin: 0 auto;
+  padding: $size-0 $size-4;
 
   @media (min-width: 640px) {
     width: 100%;
-    padding: $size-0 $size-4;
   }
 
   @media (min-width: 1024px) {
@@ -99,6 +99,7 @@ h6 {
 
 .breadcrumbs-list {
   display: flex;
+  flex-wrap: wrap;
   color: $color-text-alt;
   margin: $size-4 0;
   font-size: $text-sm;
@@ -139,13 +140,20 @@ h6 {
   div &-flex {
     display: flex;
     margin-bottom: $size-8;
+
+    & > a {
+      flex: 0 0 98px;
+    }
   }
 
   img {
-    width: 180px;
-    height: 180px;
     border-radius: $rounded;
     object-fit: contain;
+
+    @media (min-width: 640px) {
+      width: 180px;
+      height: 180px;
+    }
   }
 
   dl {
@@ -188,22 +196,35 @@ h6 {
 
 .details-flex {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+
+  @media (min-width: 640px) {
+    flex-direction: row-reverse;
+  }
 
   section {
     flex: 7 0;
-    padding: $size-8;
+    padding: $size-4 $size-8;
+    @media (min-width: 640px) {
+      padding: $size-8;
+    }
 
     img {
       width: 100%;
       aspect-ratio: 1/1;
       object-fit: contain;
-      padding: $size-8;
+      padding: $size-4;
+      @media (min-width: 640px) {
+        padding: $size-8;
+      }
     }
 
     h2 {
       font-size: $text-2xl;
-      margin-bottom: $size-8;
+      margin-bottom: $size-4;
+      @media (min-width: 640px) {
+        margin-bottom: $size-8;
+      }
     }
 
     p {
@@ -217,24 +238,37 @@ h6 {
 
   aside {
     flex: 3 0;
-    padding: $size-8 $size-8 $size-8 0;
+    padding: $size-4 $size-4;
+
+    @media (min-width: 640px) {
+      padding: $size-8 $size-8 $size-8 0;
+    }
 
     .metadata {
-      margin-bottom: $size-4;
       display: block;
       font-size: $text-sm;
+      margin-bottom: $size-2;
+      @media (min-width: 640px) {
+        margin-bottom: $size-4;
+      }
     }
 
     .title {
       font-size: $text-xl;
       line-height: 1.125;
       font-weight: bold;
-      margin-bottom: $size-8;
+      margin-bottom: $size-4;
+      @media (min-width: 640px) {
+        margin-bottom: $size-8;
+      }
     }
 
     .price {
       font-size: $text-3xl;
-      margin-bottom: $size-8;
+      margin-bottom: $size-4;
+      @media (min-width: 640px) {
+        margin-bottom: $size-8;
+      }
       color: $color-text;
     }
 
