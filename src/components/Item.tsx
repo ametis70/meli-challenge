@@ -1,7 +1,6 @@
-import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import { useSSE } from 'use-sse'
 
+import useApi from '../hooks/useApi'
 import Breadcrumbs from './Breadcrumbs'
 import Price from './Price'
 import SEO from './SEO'
@@ -14,16 +13,13 @@ const translations: Record<string, string> = {
 const Item: React.VFC = () => {
   const { id } = useParams()
 
-  const [data] = useSSE<ItemResponse>(async () => {
-    try {
-      const { data } = await axios.get(`/api/items/${id}`)
-      return data
-    } catch (e) {
-      return null
-    }
-  }, [id])
+  const data = useApi<ItemResponse>(`/api/items/${id}`)
 
-  if (!data || !data.item) {
+  if (!data) {
+    return null
+  }
+
+  if (!data.item) {
     return <p> Producto no encontrado </p>
   }
 

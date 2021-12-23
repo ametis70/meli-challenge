@@ -1,7 +1,6 @@
-import axios from 'axios'
 import { Link, useSearchParams } from 'react-router-dom'
-import { useSSE } from 'use-sse'
 
+import useApi from '../hooks/useApi'
 import Breadcrumbs from './Breadcrumbs'
 import Price from './Price'
 import SEO from './SEO'
@@ -10,17 +9,18 @@ const SearchResults = () => {
   const [searchParams] = useSearchParams()
   const query = searchParams.get('search')
 
-  const [data] = useSSE<ItemsQuery>(async () => {
-    try {
-      const { data } = await axios.get(`/api/items?q=${query}`)
-      return data
-    } catch (e) {
-      return null
-    }
-  }, [query])
+  const data = useApi<ItemsQuery>(`/api/items?q=${query}`)
 
-  if (!data || !data.items || data.items.length === 0) {
-    return <p> No hay resultados </p>
+  if (!data) {
+    return null
+  }
+
+  if (data.error || !data.items || data.items.length === 0) {
+    if (data.error === 404) {
+      return <p> No hay resultados </p>
+    } else {
+      return <p> Ocurrió un error inesperado </p>
+    }
   }
 
   return (
