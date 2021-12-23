@@ -50,6 +50,7 @@ const preRender = async (req: Request, res: Response) => {
           if (helmet) {
             this.queue(helmet.title.toString())
             this.queue(helmet.meta.toString())
+            this.queue(helmet.script.toString())
           }
 
           this.queue(`<style>${[...css].join('')}</style>`)

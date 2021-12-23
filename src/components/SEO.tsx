@@ -20,7 +20,7 @@ const metadata = {
   author,
 }
 
-const SEO: React.FC<SEOProps> = ({ title, description, image, meta = [] }) => {
+const SEO: React.FC<SEOProps> = ({ title, description, image, meta = [], children }) => {
   const computedTitle = title ? `${title} | ${metadata.name}` : metadata.name
   const computedDescription = description ?? metadata.description
 
@@ -69,7 +69,9 @@ const SEO: React.FC<SEOProps> = ({ title, description, image, meta = [] }) => {
           content: computedDescription,
         },
       ].concat(meta)}
-    />
+    >
+      {children}
+    </Helmet>
   )
 }
 

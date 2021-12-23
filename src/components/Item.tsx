@@ -29,13 +29,40 @@ const Item: React.VFC = () => {
 
   const { item } = data
 
+  let descriptionExcerpt = 'Este producto no tiene descripción'
+
+  if (item.description) {
+    descriptionExcerpt = item.description.split('\n')[0]
+    descriptionExcerpt =
+      descriptionExcerpt.length > 280
+        ? `${descriptionExcerpt.slice(0, 280)}...`
+        : descriptionExcerpt
+  }
+
   return (
     <>
       <SEO
-        title={item.title ?? 'Articulo no encontrado'}
-        description={item.description ?? 'Este articulo no tiene descripción'}
+        title={item.title ?? 'Producto no encontrado'}
+        description={descriptionExcerpt}
         image={item.picture ?? undefined}
-      />
+      >
+        {item.title && item.picture && item.picture ? (
+          <script type="application/ld+json">
+            {`{
+"@context": "https://www.schema.org",
+"@type": "product",
+"image": "${item.picture}",
+"name": "${item.title}",
+"description": "${descriptionExcerpt}",
+"offers": {
+  "@type": "Offer",
+  "price": "${item.price.amount}.${item.price.decimals}",
+  "priceCurrency": "${item.price.currency}"
+}
+}`}
+          </script>
+        ) : null}
+      </SEO>
       <main className="container">
         <Breadcrumbs segments={[]} />
         <article className="content-box">
