@@ -13,10 +13,11 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          'style-loader',
+          'isomorphic-style-loader',
           {
             loader: 'css-loader',
             options: {
+              importLoaders: 1,
               url: false,
             },
           },
