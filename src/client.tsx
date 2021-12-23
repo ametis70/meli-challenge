@@ -1,5 +1,4 @@
-import './styles/index.scss'
-
+import StyleContext from 'isomorphic-style-loader/StyleContext'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
@@ -9,12 +8,19 @@ import App from './components/App'
 
 const BroswerDataContext = createBroswerContext()
 
+const insertCss = (...styles: any[]) => {
+  const removeCss = styles.map((style) => style._insertCss())
+  return () => removeCss.forEach((dispose) => dispose())
+}
+
 ReactDOM.hydrate(
   <React.StrictMode>
     <BroswerDataContext>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <StyleContext.Provider value={{ insertCss }}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </StyleContext.Provider>
     </BroswerDataContext>
   </React.StrictMode>,
   document.getElementById('app'),
