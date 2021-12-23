@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { Request, Response, Router } from 'express'
 
 import { getDecimals } from '../util/currency'
@@ -27,7 +27,10 @@ apiRouter.get('/items', async (req: Request, res: Response) => {
     }
 
     if (data.results.length === 0) {
-      return res.status(404).send('Not items found')
+      const err = new Error() as AxiosError
+      err.response = {}
+      err!.response!.status = 404
+      throw err
     }
 
     const items = data.results.slice(0, 4).map((item) => ({
@@ -57,8 +60,8 @@ apiRouter.get('/items', async (req: Request, res: Response) => {
 
     res.json(resJson)
   } catch (e) {
-    console.error(e)
-    res.status(500).send('Internal server error')
+    const s = (e as AxiosError)?.response?.status ?? 500
+    res.status(200).json({ error: s })
   }
 })
 
@@ -110,8 +113,9 @@ apiRouter.get('/items/:id', async (req: Request, res: Response) => {
 
     res.json(resJson)
   } catch (e) {
-    console.error(e)
-    res.send(500).send('Internal server error')
+    console.log(e)
+    const s = (e as AxiosError)?.response?.status ?? 500
+    res.status(200).json({ error: s })
   }
 })
 
