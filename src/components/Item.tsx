@@ -28,31 +28,41 @@ const Item: React.VFC = () => {
   const { item } = data
 
   return (
-    <>
+    <main className="container">
       <Breadcrumbs segments={[]} />
-      <article>
-        <section>
-          <img src={item.picture} alt={`Imagen de ${item.title}`} />
-          <small>
-            {translations[item.condition]}
-            {item.sold_quantity ? ` - ${item.sold_quantity} vendidos` : null}
-          </small>
-          <h1>{item.title}</h1>
-          <p aria-label="Precio">
-            {`$ ${item.price.amount}`}
-            {item.price.decimals ? `.${item.price.decimals}` : null}
-          </p>
-          <a rel="noreferrer" target="_blank" href="https://mercadolibre.com.ar">
-            Comprar
-          </a>
-        </section>
+      <article className="content-box">
+        <h1 className="visually-hidden">{item.title}</h1>
+        <div className="details-flex">
+          <aside>
+            <small className="metadata">
+              {translations[item.condition]}
+              {item.sold_quantity ? ` - ${item.sold_quantity} vendidos` : null}
+            </small>
+            <h1 className="title" aria-hidden="true">
+              {item.title}
+            </h1>
+            <p className="price" aria-label="Precio">
+              {`$ ${item.price.amount}`}
+              {item.price.decimals ? `.${item.price.decimals}` : null}
+            </p>
+            <a
+              className="cta"
+              rel="noreferrer"
+              target="_blank"
+              href="https://mercadolibre.com.ar"
+            >
+              Comprar
+            </a>
+          </aside>
 
-        <section>
-          <h2>Descripción del producto</h2>
-          <p>{item.description ?? 'Este producto no tiene descripción'}</p>
-        </section>
+          <section>
+            <img src={item.picture} alt={`Imagen de ${item.title}`} />
+            <h2>Descripción del producto</h2>
+            <p>{item.description ?? 'Este producto no tiene descripción'}</p>
+          </section>
+        </div>
       </article>
-    </>
+    </main>
   )
 }
 

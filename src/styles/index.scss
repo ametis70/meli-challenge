@@ -21,6 +21,7 @@ html {
 
 p {
   color: $color-text-alt;
+  line-height: 1.25;
 }
 
 h1,
@@ -180,4 +181,68 @@ h6 {
   width: 1em;
   height: 1em;
   margin-left: $size-2;
+}
+
+.details-flex {
+  display: flex;
+  flex-direction: row-reverse;
+
+  section {
+    flex: 7 0;
+    padding: $size-8;
+
+    img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: contain;
+      padding: $size-8;
+    }
+
+    h2 {
+      font-size: $text-2xl;
+      margin-bottom: $size-8;
+    }
+
+    p {
+      font-size: $text-md;
+    }
+  }
+
+  aside {
+    flex: 3 0;
+    padding: $size-8 $size-8 $size-8 0;
+
+    .metadata {
+      margin-bottom: $size-4;
+      display: block;
+      font-size: $text-sm;
+    }
+
+    .title {
+      font-size: $text-xl;
+      line-height: 1.125;
+      font-weight: bold;
+      margin-bottom: $size-8;
+    }
+
+    .price {
+      font-size: $text-3xl;
+      margin-bottom: $size-8;
+      color: $color-text;
+    }
+
+    .cta {
+      display: block;
+      border-radius: $rounded;
+      background-color: $color-cta;
+      color: white;
+      width: 100%;
+      text-align: center;
+      padding: $size-2 0;
+    }
+  }
+
+  small {
+    font-size: $text-sm;
+  }
 }
