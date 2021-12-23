@@ -13,7 +13,7 @@ const author = 'Ian Mancini <contacto@ianmancini.com.ar>'
 
 const metadata = {
   locale: 'es',
-  siteUrl: 'https://ian-mancini-meli-challenge.herokuapp.com/',
+  siteUrl: 'https://ian-mancini-meli-challenge.herokuapp.com',
   name: 'MELI Challenge',
   description: `Challenge (sitio web) realizado por ${author} para MELI`,
   image: 'img/logo.png',
