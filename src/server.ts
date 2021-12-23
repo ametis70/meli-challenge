@@ -1,5 +1,6 @@
 import axios from 'axios'
 import express from 'express'
+import path from 'path'
 
 import apiRouter from './server/api'
 import preRender from './server/renderer'
@@ -17,7 +18,7 @@ const start = async () => {
   }
 
   app.use('/api', apiRouter)
-  app.use(express.static('public'))
+  app.use(express.static(path.join(__dirname, 'public')))
   app.get('*', preRender)
 
   app.listen(port, () => {
