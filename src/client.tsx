@@ -1,6 +1,7 @@
 import StyleContext, { InsertCSS } from 'isomorphic-style-loader/StyleContext'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter } from 'react-router-dom'
 import { createBroswerContext } from 'use-sse'
 
@@ -15,13 +16,15 @@ const insertCss: InsertCSS = (...styles) => {
 
 ReactDOM.hydrate(
   <React.StrictMode>
-    <BroswerDataContext>
-      <StyleContext.Provider value={{ insertCss }}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </StyleContext.Provider>
-    </BroswerDataContext>
+    <HelmetProvider>
+      <BroswerDataContext>
+        <StyleContext.Provider value={{ insertCss }}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </StyleContext.Provider>
+      </BroswerDataContext>
+    </HelmetProvider>
   </React.StrictMode>,
   document.getElementById('app'),
 )
