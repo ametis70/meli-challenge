@@ -208,6 +208,10 @@ h6 {
 
     p {
       font-size: $text-md;
+      margin-bottom: $size-2;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 

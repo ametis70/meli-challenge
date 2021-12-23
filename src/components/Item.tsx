@@ -49,7 +49,7 @@ const Item: React.VFC = () => {
               className="cta"
               rel="noreferrer"
               target="_blank"
-              href="https://mercadolibre.com.ar"
+              href={`https://articulo.mercadolibre.com.ar/MLA-${item.id.substring(3)}`}
             >
               Comprar
             </a>
@@ -58,7 +58,9 @@ const Item: React.VFC = () => {
           <section>
             <img src={item.picture} alt={`Imagen de ${item.title}`} />
             <h2>Descripción del producto</h2>
-            <p>{item.description ?? 'Este producto no tiene descripción'}</p>
+            {!item.description
+              ? 'Este producto no tiene descripción'
+              : item.description.split('\n').map((item, key) => <p key={key}>{item}</p>)}
           </section>
         </div>
       </article>
