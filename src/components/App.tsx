@@ -5,12 +5,14 @@ import s from '../styles/index.scss'
 import Header from './Header'
 import Item from './Item'
 import SearchResults from './SearchResults'
+import SEO from './SEO'
 
 const App: React.VFC = () => {
   useStyles(s)
 
   return (
     <>
+      <SEO />
       <Header />
       <Routes>
         <Route path="/items" element={<SearchResults />} />

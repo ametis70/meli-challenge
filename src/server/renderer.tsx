@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import StyleContext, { InsertCSS } from 'isomorphic-style-loader/StyleContext'
 import ReactDOMServer from 'react-dom/server'
+import Helmet from 'react-helmet'
 import { StaticRouter } from 'react-router-dom/server'
 import { createServerContext } from 'use-sse'
 
@@ -28,6 +29,9 @@ const preRender = async (req: Request, res: Response) => {
 
   ReactDOMServer.renderToString(<ServerApp />)
 
+  const helmet = Helmet.renderStatic()
+  res.write(helmet.title.toString())
+  res.write(helmet.meta.toString())
   res.write(`<style>${[...css].join('')}</style>`)
   res.write(template.closeHead)
 
