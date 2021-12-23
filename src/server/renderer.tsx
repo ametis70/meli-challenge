@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import StyleContext from 'isomorphic-style-loader/StyleContext'
+import StyleContext, { InsertCSS } from 'isomorphic-style-loader/StyleContext'
 import ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom/server'
 import { createServerContext } from 'use-sse'
@@ -11,8 +11,8 @@ const preRender = async (req: Request, res: Response) => {
   const { ServerDataContext, resolveData } = createServerContext()
 
   const css = new Set()
-  const insertCss = (...styles: any) =>
-    styles.forEach((style: any) => css.add(style._getCss()))
+  const insertCss: InsertCSS = (...styles) =>
+    styles.forEach((style) => css.add(style._getCss()))
 
   const ServerApp: React.VFC = () => (
     <ServerDataContext>
