@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useSSE } from 'use-sse'
 
 import Breadcrumbs from './Breadcrumbs'
@@ -33,7 +33,7 @@ const SearchResults = () => {
             {data.items.map((item, i) => {
               // Link wrapper for inner elements
               const L: React.FC = ({ children }) => (
-                <a href={`/items/${item.id}`}>{children}</a>
+                <Link to={`/items/${item.id}`}>{children}</Link>
               )
 
               return (

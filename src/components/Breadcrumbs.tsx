@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const Breadcrumbs: React.VFC<{ segments: string[] }> = ({ segments }) => {
   if (!segments || segments.length <= 0) {
     return null
@@ -8,7 +10,7 @@ const Breadcrumbs: React.VFC<{ segments: string[] }> = ({ segments }) => {
       <ol className="breadcrumbs-list">
         {segments.map((segment) => (
           <li key={segment}>
-            <a href={encodeURI(`/items?q=${segment}`)}>{segment}</a>
+            <Link to={encodeURI(`/items?q=${segment}`)}>{segment}</Link>
           </li>
         ))}
       </ol>

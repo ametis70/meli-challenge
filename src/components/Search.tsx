@@ -1,10 +1,11 @@
-import { useEffect, useRef } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { FormEvent, useEffect, useRef } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 const Search: React.VFC = () => {
   const [searchParams] = useSearchParams()
   const searchValue = searchParams.get('search')
   const ref = useRef<HTMLInputElement>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (ref.current && !searchValue) {
@@ -12,8 +13,20 @@ const Search: React.VFC = () => {
     }
   }, [searchValue, ref])
 
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    if (ref.current && ref.current.value !== '') {
+      navigate(`/items?search=${encodeURI(ref.current.value)}`)
+    }
+  }
+
   return (
-    <form method="get" action="/items" className="search-container">
+    <form
+      method="get"
+      action="/items"
+      className="search-container"
+      onSubmit={handleSubmit}
+    >
       <input
         ref={ref}
         id="search-box"
