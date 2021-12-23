@@ -11,7 +11,7 @@
     "build:client": "webpack build --config webpack.client.js --mode production",
     "build:server": "webpack build --config webpack.server.js --mode production",
     "build": "npm run build:client && npm run build:server",
-    "run": "node dist/index.js",
+    "start": "node dist/index.js",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json}'",
