@@ -1,5 +1,7 @@
 import { Request, Response } from 'express'
+import fs from 'fs'
 import StyleContext, { InsertCSS } from 'isomorphic-style-loader/StyleContext'
+import path from 'path'
 import ReactDOMServer from 'react-dom/server'
 import { HelmetData, HelmetProvider } from 'react-helmet-async'
 import { StaticRouter } from 'react-router-dom/server'
@@ -8,6 +10,12 @@ import { createServerContext } from 'use-sse'
 
 import App from '../components/App'
 import template from './template'
+
+const bundleFile = (() => {
+  const dir = fs.readdirSync(path.join(__dirname, 'public'))
+  const files = dir.filter((f) => f.match(/\.js$/))
+  return files[0]
+})()
 
 const preRender = async (req: Request, res: Response) => {
   const { ServerDataContext, resolveData } = createServerContext()
@@ -52,7 +60,13 @@ const preRender = async (req: Request, res: Response) => {
         function end(this: ThroughStream) {
           this.queue(template.closeBody)
           this.queue(data.toHtml())
-          this.queue(template.end())
+          this.queue(
+            template.end(
+              process.env.NODE_ENV !== 'production'
+                ? 'http://localhost:8000/bundle.js'
+                : `/public/${bundleFile}`,
+            ),
+          )
           this.queue(null)
         },
       ),
