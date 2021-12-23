@@ -6,9 +6,28 @@ const { merge } = require('webpack-merge')
 
 const common = require('./webpack.common.js')
 
-module.exports = merge(common, {
-  mode: 'development',
+const commonClient = {
   entry: path.resolve(__dirname, 'src', 'client.tsx'),
+  plugins: [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['*.js'],
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'public'),
+          to: path.resolve(__dirname, 'dist', 'public'),
+        },
+      ],
+    }),
+  ],
+  output: {
+    path: path.resolve(__dirname, 'dist', 'public'),
+  },
+}
+
+const developmentConfig = merge(common, commonClient, {
+  mode: 'development',
   devServer: {
     historyApiFallback: true,
     port: 8000,
@@ -24,20 +43,27 @@ module.exports = merge(common, {
       template: path.resolve(__dirname, 'src', 'client', 'index.html'),
       publicPath: '/',
     }),
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['*.js'],
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, 'public'),
-          to: path.resolve(__dirname, 'dist', 'public'),
-        },
-      ],
-    }),
   ],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist', 'public'),
   },
 })
+
+const productionConfig = merge(common, commonClient, {
+  mode: 'production',
+  output: {
+    filename: '[contenthash].js',
+  },
+})
+
+module.exports = (_, args) => {
+  switch (args.mode) {
+    case 'development':
+      return developmentConfig
+    case 'production':
+      return productionConfig
+    default:
+      throw new Error('No matching configuration was found!')
+  }
+}
