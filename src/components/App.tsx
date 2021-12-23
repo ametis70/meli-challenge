@@ -15,8 +15,10 @@ const App: React.VFC = () => {
       <SEO />
       <Header />
       <Routes>
+        <Route path="/" element={null} />
         <Route path="/items" element={<SearchResults />} />
         <Route path="/items/:id" element={<Item />} />
+        <Route path="*" element={<p className="message">Página no encontrada</p>} />
       </Routes>
     </>
   )
