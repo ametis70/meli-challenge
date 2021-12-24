@@ -1,6 +1,6 @@
 {
   "name": "meli-challenge",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Challenge para MELI",
   "private": true,
   "scripts": {
