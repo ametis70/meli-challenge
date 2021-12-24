@@ -10,7 +10,7 @@ const Breadcrumbs: React.VFC<{ segments: string[] }> = ({ segments }) => {
       <ol className="breadcrumbs-list">
         {segments.map((segment) => (
           <li key={segment}>
-            <Link to={encodeURI(`/items?q=${segment}`)}>{segment}</Link>
+            <Link to={encodeURI(`/items?search=${segment}`)}>{segment}</Link>
           </li>
         ))}
       </ol>
