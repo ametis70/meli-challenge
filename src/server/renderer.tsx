@@ -38,6 +38,7 @@ const preRender = async (req: Request, res: Response) => {
     </HelmetProvider>
   )
 
+  res.type('html')
   res.write(template.start)
   ReactDOMServer.renderToString(<ServerApp />)
   const data = await resolveData()

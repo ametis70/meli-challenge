@@ -1,5 +1,8 @@
 import axios from 'axios'
+import compression from 'compression'
 import express from 'express'
+import helmet from 'helmet'
+import morgan from 'morgan'
 import path from 'path'
 
 import apiRouter from './server/api'
@@ -10,6 +13,10 @@ const port = getPort()
 axios.defaults.baseURL = `http://localhost:${port}`
 
 const app = express()
+
+app.use(helmet({ contentSecurityPolicy: false }))
+app.use(compression())
+app.use(morgan('tiny'))
 
 const start = async () => {
   if (process.env.NODE_ENV !== 'production') {
