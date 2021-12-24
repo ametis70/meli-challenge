@@ -60,7 +60,7 @@ const Item: React.VFC = () => {
         ) : null}
       </SEO>
       <main className="container">
-        <Breadcrumbs segments={[]} />
+        <Breadcrumbs segments={data.categories} />
         <article className="content-box">
           <h1 className="visually-hidden">{item.title}</h1>
           <div className="details-flex">

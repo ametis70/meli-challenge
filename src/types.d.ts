@@ -403,6 +403,7 @@ declare type ItemsQuery = {
 declare type ItemResponse = {
   error?: number
   author: Author
+  categories: string[]
   item: {
     id: string
     title: string

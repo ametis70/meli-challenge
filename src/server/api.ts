@@ -10,6 +10,13 @@ const author = {
   lastname: 'Mancini',
 }
 
+const getCategories = (data: MLItemsQuery): string[] =>
+  data?.filters
+    .find((filter) => filter.id === 'category')
+    ?.values[0].path_from_root.map(
+      (breadcrumb: { id: string; name: string }) => breadcrumb.name,
+    ) ?? []
+
 apiRouter.get('/items', async (req: Request, res: Response) => {
   const { q } = req.query
 
@@ -28,6 +35,7 @@ apiRouter.get('/items', async (req: Request, res: Response) => {
 
     if (data.results.length === 0) {
       const err = new Error() as AxiosError
+      //@ts-ignore
       err.response = {}
       err!.response!.status = 404
       throw err
@@ -46,11 +54,7 @@ apiRouter.get('/items', async (req: Request, res: Response) => {
       free_shipping: item.shipping.free_shipping,
     }))
 
-    const categories = data?.filters
-      .find((filter) => filter.id === 'category')
-      ?.values[0].path_from_root.map(
-        (breadcrumb: { id: string; name: string }) => breadcrumb.name,
-      )
+    const categories = getCategories(data)
 
     const resJson: ItemsQuery = {
       author,
@@ -93,8 +97,19 @@ apiRouter.get('/items/:id', async (req: Request, res: Response) => {
       throw new Error(itemDescription.error)
     }
 
+    const { data: itemQuery } = await axios.get<MLItemsQuery | MLError>(
+      encodeURI(`https://api.mercadolibre.com/sites/MLA/search?q=${itemData.title}`),
+    )
+
+    if ('error' in itemQuery) {
+      throw new Error(itemQuery.error)
+    }
+
+    const categories = getCategories(itemQuery)
+
     const resJson: ItemResponse = {
       author,
+      categories,
       item: {
         id: itemData.id,
         title: itemData.title,
