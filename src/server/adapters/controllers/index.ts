@@ -1,10 +1,7 @@
 import { getItem, getItemList } from '../../use-cases'
+import { RequestQuery } from '../../use-cases/getItem'
 import makeGetItem from './get-item'
 import makeGetItemList from './get-items'
-
-export interface RequestQuery {
-  [key: string]: undefined | string | string[] | RequestQuery | RequestQuery[]
-}
 
 export interface HttpRequest<BodyType = Record<string, any>> {
   body: BodyType
