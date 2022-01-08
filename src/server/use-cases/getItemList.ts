@@ -7,6 +7,10 @@ import ItemList from '../entities/ItemList'
 
 // https://api.mercadolibre.com/sites/MLA/search?q=${search}
 
+export interface RequestQuery {
+  [key: string]: undefined | string | string[] | RequestQuery | RequestQuery[]
+}
+
 export type ItemListGetter = (search: string) => Promise<ItemList>
 
 const makeGetItemList = (client: HttpClient, endpoint: string) => {

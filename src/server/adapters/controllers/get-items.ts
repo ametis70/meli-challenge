@@ -10,10 +10,6 @@ const makeGetItemList = (getItemList: ItemListGetter) => {
     try {
       const { q } = request.query
 
-      if (typeof q !== 'string') {
-        throw new Error('Query is not a string')
-      }
-
       const body = await getItemList(q)
       return {
         headers,
