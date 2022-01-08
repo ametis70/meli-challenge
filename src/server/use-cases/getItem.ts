@@ -15,7 +15,7 @@ const makeGetItem = (
 ) => {
   const func: ItemGetter = async (id) => {
     // Get Item by ID
-    const itemResponse = await client.get<MLItem>(`${endpoint}/${id}`)
+    const itemResponse = await client.get<MLItem>(encodeURI(`${endpoint}/${id}`))
     handleMlResponseErrors(itemResponse)
 
     // Get description
