@@ -7,7 +7,7 @@ const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
 
 const commonClient = {
-  entry: path.resolve(__dirname, 'src', 'client.tsx'),
+  entry: path.resolve(__dirname, 'src', 'react', 'browser.tsx'),
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['*.js'],
@@ -40,7 +40,13 @@ const developmentConfig = merge(common, commonClient, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'client', 'index.html'),
+      template: path.resolve(
+        __dirname,
+        'src',
+        'react',
+        'webpack-dev-server',
+        'index.html',
+      ),
       publicPath: '/',
     }),
   ],

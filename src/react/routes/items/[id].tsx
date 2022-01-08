@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom'
 
-import useApi from '../hooks/useApi'
-import Breadcrumbs from './Breadcrumbs'
-import Price from './Price'
-import SEO from './SEO'
+import ItemResponse from '../../../server/entities/Item'
+import Breadcrumbs from '../../components/Breadcrumbs'
+import Price from '../../components/Price'
+import SEO from '../../components/SEO'
+import useApi from '../../hooks/useApi'
 
 const translations: Record<string, string> = {
   used: 'Usado',
