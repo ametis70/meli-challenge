@@ -12,10 +12,11 @@
     "skipLibCheck": true,
     "noImplicitAny": true,
     "resolveJsonModule": true,
+    "types": ["jest"]
   },
   "ts-node": {
     "files": true,
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "public", ".cache"]
+  "exclude": ["node_modules", "public", ".cache", "**/*.test.ts", "**/*.test.tsx"],
+  "include": ["**/*.ts", "**/*.tsx"]
 }
