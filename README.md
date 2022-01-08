@@ -3,7 +3,7 @@
 </p>
 
 # Challenge MELI
-
+[![Node.js CI](https://github.com/ametis70/meli-challenge/actions/workflows/node.js.yml/badge.svg)](https://github.com/ametis70/meli-challenge/actions/workflows/node.js.yml)
 ![Lighthouse performance score](.github/badges/lighthouse_performance.svg)
 ![Lighthouse accesibility score](.github/badges/lighthouse_accessibility.svg)
 ![Lighthouse best practices score](.github/badges/lighthouse_best-practices.svg)
