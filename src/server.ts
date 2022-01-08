@@ -26,7 +26,7 @@ const start = async () => {
   }
 
   app.use(express.static(path.join(__dirname, 'public')))
-  app.use('/api/item/:id', makeExpressCallback(getItemController))
+  app.use('/api/items/:id', makeExpressCallback(getItemController))
   app.use('/api/items', makeExpressCallback(getItemListController))
   app.get('*', preRender)
 
