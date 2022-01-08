@@ -373,49 +373,6 @@ declare type MLError = {
   message: string
 }
 
-// App API types
-
-declare type Author = {
-  name: string
-  lastname: string
-}
-
-declare type Price = {
-  currency: string
-  amount: number
-  decimals: number
-}
-
-declare type ItemsQuery = {
-  error?: number
-  author: Author
-  categories: string[]
-  items: Array<{
-    id: string
-    title: string
-    price: Price
-    picture: string
-    condition: string
-    free_shipping: boolean
-  }>
-}
-
-declare type ItemResponse = {
-  error?: number
-  author: Author
-  categories: string[]
-  item: {
-    id: string
-    title: string
-    price: Price
-    picture: string
-    condition: string
-    free_shipping: boolean
-    sold_quantity: number
-    description: string
-  }
-}
-
 // isomorphic-style-loader
 // From: https://github.com/kriasoft/isomorphic-style-loader/issues/105
 
