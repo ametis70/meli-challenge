@@ -5,7 +5,7 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import path from 'path'
 
-import { getItemController } from './server/adapters/controllers'
+import { getItemController, getItemListController } from './server/adapters/controllers'
 import preRender from './server/renderer'
 import makeExpressCallback from './util/expressCallback'
 import { getPort } from './util/port'
@@ -27,6 +27,7 @@ const start = async () => {
 
   app.use(express.static(path.join(__dirname, 'public')))
   app.use('/api/item/:id', makeExpressCallback(getItemController))
+  app.use('/api/items', makeExpressCallback(getItemListController))
   app.get('*', preRender)
 
   app.listen(port, () => {
