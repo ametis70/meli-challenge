@@ -1,15 +1,16 @@
 import { Link, useSearchParams } from 'react-router-dom'
 
-import useApi from '../hooks/useApi'
-import Breadcrumbs from './Breadcrumbs'
-import Price from './Price'
-import SEO from './SEO'
+import ItemsList from '../../../server/entities/ItemList'
+import Breadcrumbs from '../../components/Breadcrumbs'
+import Price from '../../components/Price'
+import SEO from '../../components/SEO'
+import useApi from '../../hooks/useApi'
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams()
   const query = searchParams.get('search')
 
-  const data = useApi<ItemsQuery>(`/api/items?q=${query}`)
+  const data = useApi<ItemsList>(`/api/items?q=${query}`)
 
   if (!data) {
     return null

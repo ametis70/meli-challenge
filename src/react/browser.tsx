@@ -5,7 +5,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter } from 'react-router-dom'
 import { createBroswerContext } from 'use-sse'
 
-import App from './components/App'
+import App from './App'
 
 const BroswerDataContext = createBroswerContext()
 

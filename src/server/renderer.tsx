@@ -8,7 +8,7 @@ import { StaticRouter } from 'react-router-dom/server'
 import through, { ThroughStream } from 'through'
 import { createServerContext } from 'use-sse'
 
-import App from '../components/App'
+import App from '../react/App'
 import template from './template'
 
 const bundleFile = (() => {

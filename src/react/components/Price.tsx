@@ -1,4 +1,6 @@
-const Price: React.FC<{ price: Price }> = ({ price, children }) => {
+import PriceType from '../../server/entities/Price'
+
+const Price: React.FC<{ price: PriceType }> = ({ price, children }) => {
   return (
     <p className="price">
       {`$ ${price.amount.toLocaleString('es-AR')}`}
