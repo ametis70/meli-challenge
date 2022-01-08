@@ -11,7 +11,7 @@ export type ItemListGetter = (search: string) => Promise<ItemList>
 
 const makeGetItemList = (client: HttpClient, endpoint: string) => {
   const func: ItemListGetter = async (search) => {
-    const response = await client.get<MLItemsQuery>(`${endpoint}?q=${search}`)
+    const response = await client.get<MLItemsQuery>(encodeURI(`${endpoint}?q=${search}`))
     handleMlResponseErrors(response)
 
     if (response.data.results.length === 0) {
