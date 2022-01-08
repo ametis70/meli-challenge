@@ -1,13 +1,14 @@
+import Item from '../../entities/Item'
 import { ItemGetter } from '../../use-cases/getItem'
-import { HttpRequest } from '.'
+import { Controller } from '.'
 
 const makeGetItem = (getItem: ItemGetter) => {
-  return async (r: HttpRequest) => {
+  const c: Controller<Item> = async (request) => {
     const headers = {
       'Content-Type': 'application/json',
     }
     try {
-      const body = await getItem(r.params.id)
+      const body = await getItem(request.params.id)
       return {
         headers,
         statusCode: 200,
@@ -21,6 +22,7 @@ const makeGetItem = (getItem: ItemGetter) => {
       }
     }
   }
+  return c
 }
 
 export default makeGetItem
