@@ -1,3 +1,6 @@
+import { getItem } from '../../use-cases'
+import makeGetItem from './get-item'
+
 interface RequestQuery {
   [key: string]: undefined | string | string[] | RequestQuery | RequestQuery[]
 }
@@ -13,9 +16,11 @@ export interface HttpRequest<BodyType = Record<string, any>> {
 }
 
 export interface HttpResponse<BodyType = Record<string, any>> {
-  body: BodyType
+  body?: BodyType
   headers: Record<string, string>
   statusCode: number
 }
 
-export type Controller = <T>(r: HttpRequest) => Promise<HttpResponse<T>>
+export type Controller<T> = (r: HttpRequest) => Promise<HttpResponse<T>>
+
+export const getItemController = makeGetItem(getItem)
